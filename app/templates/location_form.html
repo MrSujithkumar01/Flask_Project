@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ action }} Location</h2>
+<form method="post">
+  {{ form.csrf_token }}
+  <div class="mb-3">
+    {{ form.location_id.label(class_="form-label") }}
+    {% if edit %}
+      {{ form.location_id(class_="form-control", readonly=true) }}
+    {% else %}
+      {{ form.location_id(class_="form-control") }}
+    {% endif %}
+    {% for err in form.location_id.errors %}<div class="text-danger">{{ err }}</div>{% endfor %}
+  </div>
+  <div class="mb-3">
+    {{ form.name.label(class_="form-label") }}
+    {{ form.name(class_="form-control") }}
+    {% for err in form.name.errors %}<div class="text-danger">{{ err }}</div>{% endfor %}
+  </div>
+  <button class="btn btn-primary" type="submit">{{ action }}</button>
+  <a class="btn btn-secondary" href="{{ url_for('locations.list_locations') }}">Cancel</a>
+</form>
+{% endblock %}

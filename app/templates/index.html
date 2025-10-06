@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center">
+  <h1>Flask Inventory Management</h1>
+  <p class="lead">Use the navigation above to manage Products, Locations and Movements.</p>
+  <p><a class="btn btn-primary" href="{{ url_for('products.list_products') }}">Go to Products</a></p>
+</div>
+{% endblock %}

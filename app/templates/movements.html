@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Movements</h2>
+  <a class="btn btn-success" href="{{ url_for('movements.create_movement') }}">Record Movement</a>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Movement ID</th>
+      <th>Product</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Qty</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for m in movements %}
+    <tr>
+      <td>{{ m.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+      <td>{{ m.movement_id }}</td>
+      <td>{{ m.product_id }}</td>
+      <td>{{ m.from_location_id or '-' }}</td>
+      <td>{{ m.to_location_id or '-' }}</td>
+      <td>{{ m.qty }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6">No movements found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
